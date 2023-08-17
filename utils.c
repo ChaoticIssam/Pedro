@@ -63,7 +63,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (ft_strdup(s1));
 	z = malloc(sizeof(t_join));
 	len_join(z, s1, s2);
-	
 	if (!z->x)
 		return (0);
 	while (s1[z->i])

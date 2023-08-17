@@ -12,12 +12,12 @@
 
 #include "minishell.h"
 
-void   acc_j(t_commandes *tmp, t_bill *b)
+void	acc_j(t_commandes *tmp, t_bill *b)
 {
-    while (tmp->commande[b->i][b->j])
+	while (tmp->commande[b->i][b->j])
 	{
 		tmp->commande[b->i][b->j] = tmp->commande[b->i]
-			[b->j + 1];
+		[b->j + 1];
 		b->j++;
 	}
 }

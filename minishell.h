@@ -460,5 +460,7 @@ void					fill_str_l(t_herdc *a, t_varint *l);
 int						error_parss(char *list);
 char					*ft_strtrim(char *s1, char *set);
 void					acc_j(t_commandes *tmp, t_bill *b);
+void					red_q(char *str, t_tokenz *m);
+void					red_red(char *str, t_tokenz *m, char token);
 
 #endif

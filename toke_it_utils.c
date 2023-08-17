@@ -18,7 +18,6 @@ void	dqbp(t_tokenz *m, char *str)
 
 	tmp = 0;
 	tmp = quote_bfr_pipe(str, m->i, '"');
-	printf("tmp ->%d\n", tmp);
 	m->i++;
 	m->j++;
 	while (m->i < tmp)

@@ -78,11 +78,8 @@ void	double_redi_tokenz(t_tokenz *m, char *str, char token)
 	plus_plus(m);
 	m->array[m->j] = token;
 	plus_plus(m);
-	if (ft_isredi(str[m->i]) || ft_issospecial(str[m->i]))
-	{
-		m->array[m->j] = token;
-		plus_plus(m);
-	}
+	red_red(str, m, token);
+	red_q(str, m);
 	while (m->i <= ft_strlen(str) && str[m->i] && (ft_isspace(str[m->i])
 			|| ft_isprintbl(str[m->i])) && !ft_issospecial(str[m->i]) && !lock)
 	{
