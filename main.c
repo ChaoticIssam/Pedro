@@ -27,7 +27,6 @@ void	ft_read_line(t_main *main)
 		main->tmp = main->m;
 		main->list = toknz_list(main->line, 0, 0);
 	}
-	printf("list ->%s\n", main->list);
 }
 
 void	print_before_pipe(t_main *main)
@@ -67,12 +66,10 @@ int	main(int ac, char **av, char **env)
 	t_main	*main;
 	t_envar	*ev;
 
-	(void)ac;
-	(void)av;
 	ev = 0;
 	ev = get_env(ev, env);
 	main = my_malloc(sizeof(t_main));
-	int_main(main);
+	int_main(main, ac, av);
 	signal_handler();
 	while (1)
 	{
@@ -83,12 +80,8 @@ int	main(int ac, char **av, char **env)
 			if (main->list && main->line
 				&& (*return_commande(main->list, main->line, 1, 0)
 					|| *return_file(main->list, main->line, 1, main->tmp)))
-				{
-					int_main_before(main, ev);
-					print_before_pipe(main);
-				}
+				int_main_before(main, ev);
 			do_after_pipe(main, ev);
-			print_after_pipe(main);
 			multiple_pipe(&main->m, &ev, main->list, &main->senv);
 			if (main->line)
 				free(main->line);

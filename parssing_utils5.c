@@ -45,13 +45,13 @@ char	*fill_var(t_commandes *tmp, t_envar *env, int i, int j)
 {
 	char	*var;
 	int		x;
-	int		env_len;
 
-	env_len = ft_strlen(env->value);
-	var = my_malloc(sizeof(char) * env_len + 1);
+	(void)env;
+	var = my_malloc(sizeof(char) * 100);
 	x = 0;
 	j++;
-	while (tmp->commande[i][j] && tmp->commande[i][j] != ' ')
+	while (tmp->commande[i][j] && tmp->commande[i][j] != ' '
+		&& tmp->commande[i][j] != '$')
 	{
 		var[x] = tmp->commande[i][j];
 		j++;

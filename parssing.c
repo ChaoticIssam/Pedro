@@ -47,7 +47,7 @@ char	**return_commande(char *list, char *str, int bool, int c)
 				return (s->commande);
 		}
 		if ((list[i] == '3' || list[i] == '0') && !ft_isredi(list[i]))
-			i = for_quotes(list, s, str, i) - 1;
+				i = for_quotes(list, s, str, i) - 1;
 		start_stop(list, s, i);
 		rest_of_parss(list, str, s, i++);
 	}

@@ -19,7 +19,7 @@ int	exec1(t_envar **ev, char **input, int *fg)
 		t_echo(&input[1]);
 		*fg = 1;
 	}
-	else if (!ft_str_ncmp("exit", input[0], 5))
+	else if (!ft_str_ncmp("exit", input[0], 6))
 	{
 		t_exit(input);
 		*fg = 1;
@@ -29,7 +29,7 @@ int	exec1(t_envar **ev, char **input, int *fg)
 		t_cd(ev, input);
 		*fg = 1;
 	}
-	else if (!ft_str_ncmp("pwd", input[0], 3)
+	else if (!ft_str_ncmp(input[0], "pwd", 4)
 		|| !ft_str_ncmp("/bin/pwd", input[0], 9))
 	{
 		t_pwd();
@@ -45,18 +45,18 @@ int	exec(t_envar **ev, char **input)
 	fg = 0;
 	if (exec1(ev, input, &fg))
 		return (fg);
-	else if (!ft_str_ncmp("export", input[0], 5))
+	else if (!ft_str_ncmp("export", input[0], 7))
 	{
 		t_export(ev, &input[1]);
 		fg = 1;
 	}
-	else if (!ft_str_ncmp("env", input[0], 3)
-		|| !ft_str_ncmp("/usr/bin/env", input[0], 12))
+	else if (!ft_str_ncmp("env", input[0], 4)
+		|| !ft_str_ncmp("/usr/bin/env", input[0], 13))
 	{
 		env(ev, &input[1]);
 		fg = 1;
 	}
-	else if (!ft_str_ncmp("unset", input[0], 5))
+	else if (!ft_str_ncmp("unset", input[0], 6))
 	{
 		unset(ev, &input[1]);
 		fg = 1;

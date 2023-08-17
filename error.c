@@ -20,7 +20,7 @@ int	quotes_error(char *list)
 	num = num_of_q(list, 0);
 	num1 = num_of_s_q(list, 0);
 	if (num % 2 != 0 || num1 % 2 != 0)
-		return(lerreurat(3));
+		return (lerreurat(3));
 	return (0);
 }
 
@@ -33,11 +33,11 @@ int	expand_erreur(char *list)
 		return (0);
 	while (list[i])
 	{
-		if(ft_isredi(list[i]) && ft_isredi(list[i + 1]))
+		if (ft_isredi(list[i]) && ft_isredi(list[i + 1]))
 		{
 			i = i + 2;
 			if (ft_isredi(list[i]) || !list[i])
-				return(lerreurat(9));
+				return (lerreurat(9));
 		}	
 		i++;
 	}
@@ -47,15 +47,16 @@ int	expand_erreur(char *list)
 int	check_pipe(char *list)
 {
 	int	i;
+
 	if (list[0] == '6')
-		return(lerreurat(6));
+		return (lerreurat(6));
 	i = ft_strlen(list) - 1;
 	if (i >= 0)
 	{
 		if (list[i] == '6')
-			return(lerreurat(6));
+			return (lerreurat(6));
 		while (list[i] == '2')
-			 i--;
+			i--;
 		if (list[i] == '6')
 			return (lerreurat(6));
 	}
@@ -73,12 +74,12 @@ int	lerreurat(int error)
 {
 	if (error == 3)
 	{
-		write(2, "ERROR: parse error near quote\n", 23);
+		write(2, "ERROR: parse error near quote\n", 30);
 		return (3);
 	}
 	if (error == 6)
 	{
-		write(2, "ERROR: parse error near `|'\n", 21);
+		write(2, "ERROR: parse error near `|'\n", 28);
 		return (6);
 	}
 	if (error == 9)

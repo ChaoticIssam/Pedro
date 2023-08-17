@@ -254,6 +254,15 @@ typedef struct g_fils
 	char	*out_file;
 }			t_filino;
 
+typedef struct	s_join
+{
+	char	*x;
+	int		i;
+	int		j;
+	int		s1_len;
+	int		s2_len;
+}				t_join;
+
 int						parent_heredoc(t_herdc *a, t_varint *l);
 void					child_heredoc(t_herdc *a, t_varint *l);
 int						check_ofiles(char *list, int *i, int *j);
@@ -295,7 +304,7 @@ void					ft_lstadd_back(t_commandes **lst, t_commandes *new);
 void					ft_lstadd_back_files(t_files **lst, t_files *new);
 t_files					*ft_lstlast_files(t_files *lst);
 t_files					*ft_lstnew_files(void *content);
-void					int_main(t_main *main);
+void					int_main(t_main *main, int ac, char **av);
 void					int_main_before(t_main *main, t_envar *ev);
 void					int_main_after(t_main *main);
 void					print_after_pipe(t_main *main);
@@ -351,6 +360,8 @@ void					last_world_ig(t_commande *s, int i);
 void					get_commande(t_commande *s, char *str);
 void					skip_sp(t_commande *s, char *list, int i);
 void					free_all_1(char **str);
+void					ft_down(t_tokenz *m);
+void					redi_is_more(char *str, t_tokenz *m);
 int						num_of_s_q(char *list, int start);
 int						sec_s_q(char *tknz);
 int						check_pipe(char *list);
@@ -446,5 +457,7 @@ int						bigger_than_one(char *list, t_commandes **c,
 void					here_doc_signal(int sig);
 void					fill_str_l(t_herdc *a, t_varint *l);
 int						error_parss(char *list);
+char					*ft_strtrim(char *s1, char *set);
+void   					acc_j(t_commandes *tmp, t_bill *b);
 
 #endif
