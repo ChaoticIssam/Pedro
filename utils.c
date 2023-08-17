@@ -61,7 +61,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (ft_strdup(s1));
 	if (!s2 && s1)
 		return (ft_strdup(s1));
-	z = malloc(sizeof(t_join));
+	z = my_malloc(sizeof(t_join));
 	len_join(z, s1, s2);
 	if (!z->x)
 		return (0);

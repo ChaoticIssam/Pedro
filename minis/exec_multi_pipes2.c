@@ -17,12 +17,16 @@ void	parent_process_in_pipe(t_exeec *z)
 	g_g.child = 1;
 	if (z->i > 0)
 		close(z->old_ifd);
-	z->old_ifd = z->pipe_fd[0];
+	z->old_ifd = dup(z->pipe_fd[0]);
+	close(z->pipe_fd[0]);
 	close(z->pipe_fd[1]);
 	z->cmd = z->cmd->next;
-	z->l->k++;
 	if (check_last_heredoc(z->list_sp[z->l->k]))
+	{
+		close(z->l->fd_rdc[z->l->nb_h]);
 		z->l->nb_h++;
+	}
+	z->l->k++;
 	z->i++;
 }
 
@@ -31,17 +35,18 @@ void	wait_child_and_signals(t_exeec *z)
 	z->i = 0;
 	while (z->i < z->s)
 		waitpid(z->pid_fd[z->i++], &(z->child_status), 0);
+	dup2(z->stout, 1);
+	dup2(z->stin, 0);
+	close(z->old_ifd);
+	close(z->l->pipe_fd[0]);
+	close(z->l->pipe_fd[1]);
+	close(z->pipe_fd[0]);
+	close(z->pipe_fd[1]);
 	g_g.child = 1;
 	if (WIFEXITED(z->child_status))
 		g_g.exit_status = WEXITSTATUS(z->child_status);
 	else if (WIFSIGNALED(z->child_status))
 		g_g.exit_status = 128 + WTERMSIG(z->child_status);
-	if (z->s > 1)
-	{
-		close(z->old_ifd);
-		close(z->pipe_fd[0]);
-		close(z->pipe_fd[1]);
-	}
 }
 
 void	exec_command_in_pipe(t_envar **ev, t_exeec *z)
@@ -62,8 +67,6 @@ void	exec_command_in_pipe(t_envar **ev, t_exeec *z)
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}
-	else if (z->i > 0)
-		waitpid(z->pid_fd[z->i - 1], 0, 0);
 	exit(0);
 }
 

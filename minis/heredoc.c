@@ -46,7 +46,8 @@ int	parent_heredoc(t_herdc *a, t_varint *l)
 
 void	fill_sring(t_varint *l, t_herdc *a)
 {
-	if (l->line[0] != '\0' && l->tmp->files[l->x] && !ft_str_ncmp(l->line, l->tmp->files[l->x],
+	if (l->line[0] != '\0' && l->tmp->files[l->x]
+		&& !ft_str_ncmp(l->line, l->tmp->files[l->x],
 			ft_strlen(l->line)))
 	{
 		if (!ft_strcmp(a->in_file, l->tmp->files[l->x]))
@@ -78,7 +79,11 @@ void	child_heredoc(t_herdc *a, t_varint *l)
 	{
 		l->line = readline(">");
 		a->tmp = l->line;
-		a->tmp = check_bill_her(a->tmp, l->s, l->env);
+		if (!strchr(l->tmp->files[l->x], '$'))
+		{
+			printf("ana hna----\n");
+			a->tmp = check_bill_her(a->tmp, l->s, l->env);
+		}
 		l->line = a->tmp;
 		fill_sring(l, a);
 		a->i++;

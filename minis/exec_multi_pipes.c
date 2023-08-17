@@ -49,17 +49,23 @@ void	redirection_for_first_command(t_exeec *z)
 	{
 		dup2(z->l->out, 1);
 		close(z->l->out);
+		close(z->pipe_fd[1]);
 	}
 	else
+	{
 		dup2(z->pipe_fd[1], 1);
+		close(z->pipe_fd[1]);
+	}
 }
 
 void	redirection_for_midle_command(t_exeec *z)
 {
+	close(z->pipe_fd[0]);
 	if (z->l->out != -1)
 	{
 		dup2(z->l->out, 1);
 		close(z->l->out);
+		close(z->pipe_fd[1]);
 	}
 	else
 	{
@@ -70,6 +76,7 @@ void	redirection_for_midle_command(t_exeec *z)
 	{
 		dup2(z->l->in, 0);
 		close(z->l->in);
+		close(z->old_ifd);
 	}
 	else
 	{
@@ -89,6 +96,7 @@ void	redirection_for_last_command(t_exeec *z)
 	{
 		dup2(z->l->in, 0);
 		close(z->l->in);
+		close(z->old_ifd);
 	}
 	else
 	{

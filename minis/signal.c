@@ -24,6 +24,8 @@ static void	control_c(int sig)
 			rl_on_new_line();
 			rl_redisplay();
 		}
+		if (g_g.child)
+			printf("\n");
 	}
 }
 

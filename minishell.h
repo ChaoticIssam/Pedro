@@ -445,8 +445,8 @@ void					cd_old(t_envar	**ev, t_tcd *l, char **input);
 void					cd_as(t_envar	**ev, t_tcd *l);
 void					get_pwd(t_envar	**ev, t_tcd *l);
 char					*check_bill_her(char *str, t_env *senv, t_envar *env);
-void					done_normal_her(char *str, t_env *senv, t_envar *env,
-							t_bill *bill);
+char					*done_normal_her(char *str, t_env *senv,
+							t_envar *env, t_bill *bill);
 char					*fill_var_her(char *str, t_envar *env, int i);
 char					*fill_path_her(t_envar *env, t_env *s);
 void					set_pipe(t_exeec *z, t_envar **ev);
@@ -462,5 +462,6 @@ char					*ft_strtrim(char *s1, char *set);
 void					acc_j(t_commandes *tmp, t_bill *b);
 void					red_q(char *str, t_tokenz *m);
 void					red_red(char *str, t_tokenz *m, char token);
+int						my_strcmp(char *s1, char *s2);
 
 #endif

@@ -61,7 +61,7 @@ int	bigger_than_one(char *list, t_commandes **c, t_exeec *z, t_envar **ev)
 			printf("Minishel: error fork\n");
 			return (1);
 		}
-		else if (z->pid_fd[z->i] == 0 && z->cmd->commande[0])
+		else if (z->pid_fd[z->i] == 0)
 			child_process_in_pipe(z, ev);
 		parent_process_in_pipe(z);
 	}

@@ -14,8 +14,6 @@
 
 int	heredoc_single_command(t_exeec *z, char *list)
 {
-	z->stin = dup(0);
-	z->stout = dup(1);
 	if (z->cmd->files)
 	{
 		if (heredoc(&(z->cmd), z->l, list) == -1)
@@ -73,7 +71,6 @@ void	single_command(t_exeec *z, t_envar **ev)
 			close(z->l->out);
 		dup2(z->stout, 1);
 		dup2(z->stin, 0);
-		return ;
 	}
 	else
 	{
@@ -89,12 +86,16 @@ void	single_command(t_exeec *z, t_envar **ev)
 			parent_in_single_child(z);
 		g_g.child = 0;
 	}
+	close(z->stin);
+	close(z->stout);
 }
 
 void	single_node_exec(t_exeec *z, char *list, t_envar **ev)
 {
 	if (!heredoc_single_command(z, list))
 		return ;
+	z->stin = dup(0);
+	z->stout = dup(1);
 	if (z->l->in != -1)
 	{
 		dup2(z->l->in, 0);
@@ -102,6 +103,7 @@ void	single_node_exec(t_exeec *z, char *list, t_envar **ev)
 	}
 	if (z->l->out != -1)
 	{
+		printf("dkhal mrhba\n");
 		dup2(z->l->out, 1);
 		close(z->l->out);
 	}

@@ -29,38 +29,6 @@ void	ft_read_line(t_main *main)
 	}
 }
 
-void	print_before_pipe(t_main *main)
-{
-	while (main->tmp->commande[main->j])
-	{
-		ft_putstr(main->tmp->commande[main->j]);
-		printf("<-commandes before pipe\n");
-		main->j++;
-	}
-	while (main->tmp->files[main->x])
-	{
-		ft_putstr(main->tmp->files[main->x]);
-		printf("<-files before pipe\n");
-		main->x++;
-	}
-}
-
-void	print_after_pipe(t_main *main)
-{
-	while (main->tmp->commande[main->j])
-	{
-		ft_putstr(main->tmp->commande[main->j]);
-		printf("<-commande after pipe\n");
-		main->j++;
-	}
-	while (main->tmp->files[main->x])
-	{
-		ft_putstr(main->tmp->files[main->x]);
-		printf("<-files after pipe\n");
-		main->x++;
-	}
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_main	*main;

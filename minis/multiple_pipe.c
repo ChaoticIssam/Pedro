@@ -25,6 +25,7 @@ void	multiple_pipe_init(t_exeec *z, t_commandes **c, char *list)
 	z->i = 0;
 	z->l->fd_rdc = my_malloc(sizeof(int) * z->t);
 	z->l->nb_h = 0;
+	z->l->k = 0;
 	z->cp = NULL;
 }
 

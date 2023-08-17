@@ -13,13 +13,13 @@
 #include "../minishell.h"
 
 int	exec1(t_envar **ev, char **input, int *fg)
-{	
+{
 	if (!ft_str_ncmp("echo", input[0], 5))
 	{
 		t_echo(&input[1]);
 		*fg = 1;
 	}
-	else if (!ft_str_ncmp("exit", input[0], 6))
+	else if (!ft_str_ncmp("exit", input[0], 5))
 	{
 		t_exit(input);
 		*fg = 1;
@@ -29,7 +29,7 @@ int	exec1(t_envar **ev, char **input, int *fg)
 		t_cd(ev, input);
 		*fg = 1;
 	}
-	else if (!ft_str_ncmp(input[0], "pwd", 4)
+	else if (!ft_str_ncmp("pwd", input[0], 4)
 		|| !ft_str_ncmp("/bin/pwd", input[0], 9))
 	{
 		t_pwd();

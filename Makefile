@@ -1,5 +1,5 @@
 NAME = Minishell
-CC = gcc
+CC = gcc-11
 RM = rm -f
 LIBS =-lreadline -lncurses -lc -lm
 CFLAGS = -Wall -Wextra -Werror
