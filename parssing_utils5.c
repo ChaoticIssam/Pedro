@@ -60,3 +60,12 @@ char	*fill_var(t_commandes *tmp, t_envar *env, int i, int j)
 	var[x] = '\0';
 	return (var);
 }
+
+void	len_join(t_join *z, char *s1, char *s2)
+{
+	z->x = my_malloc(sizeof(char) * (z->s1_len + z->s2_len + 1));
+	z->j = 0;
+	z->i = 0;
+	z->s1_len = ft_strlen(s1);
+	z->s2_len = ft_strlen(s2);
+}

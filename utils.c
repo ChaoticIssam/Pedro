@@ -43,15 +43,6 @@ void	ft_putstr(char *str)
 	printf("(%s)", str);
 }
 
-void	len_join(t_join *z, char *s1, char *s2)
-{
-	z = malloc(sizeof(t_join));
-	z->j = 0;
-	z->i = 0;
-	z->s1_len = ft_strlen(s1);
-	z->s2_len = ft_strlen(s2);
-}
-
 void	acc_join(t_join *z)
 {
 	z->i++;
@@ -70,8 +61,9 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (ft_strdup(s1));
 	if (!s2 && s1)
 		return (ft_strdup(s1));
+	z = malloc(sizeof(t_join));
 	len_join(z, s1, s2);
-	z->x = my_malloc(sizeof(char) * (z->s1_len + z->s2_len + 1));
+	
 	if (!z->x)
 		return (0);
 	while (s1[z->i])

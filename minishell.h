@@ -254,7 +254,7 @@ typedef struct g_fils
 	char	*out_file;
 }			t_filino;
 
-typedef struct	s_join
+typedef struct s_join
 {
 	char	*x;
 	int		i;
@@ -295,6 +295,7 @@ char					*get_path(t_envar *env);
 char					*fill_path(t_envar *env, t_env *s);
 int						quotes_error(char *list);
 int						expand_erreur(char *list);
+void					len_join(t_join *z, char *s1, char *s2);
 int						lerreurat(int error);
 char					*ft_substr(char *s, int start, int len);
 char					**ft_split(char *str, char c);
@@ -458,6 +459,6 @@ void					here_doc_signal(int sig);
 void					fill_str_l(t_herdc *a, t_varint *l);
 int						error_parss(char *list);
 char					*ft_strtrim(char *s1, char *set);
-void   					acc_j(t_commandes *tmp, t_bill *b);
+void					acc_j(t_commandes *tmp, t_bill *b);
 
 #endif
